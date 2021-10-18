@@ -1,11 +1,14 @@
 name = "Cistercian"
 license = "MIT"
 licenselink = "https://github.com/mrled/hugo-theme-cistercian/blob/master/LICENSE"
-description = ""
-homepage = ""
-tags = []
-features = []
-min_version = "0.41.0"
+description = "A component theme to display Cistercian characters"
+homepage = "https://github.com/mrled/hugo-theme-cistercian"
+tags = ["cistercian", "component"]
+features = ["cistercian", "webfont"]
+
+[module]
+  [module.hugoVersion]
+    min = "0.84.0"
 
 [author]
   name = "Micah R Ledbetter"
