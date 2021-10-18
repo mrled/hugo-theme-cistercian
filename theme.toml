@@ -1,0 +1,12 @@
+name = "Cistercian"
+license = "MIT"
+licenselink = "https://github.com/mrled/hugo-theme-cistercian/blob/master/LICENSE"
+description = ""
+homepage = ""
+tags = []
+features = []
+min_version = "0.41.0"
+
+[author]
+  name = "Micah R Ledbetter"
+  homepage = "https://me.micahrl.com"

@@ -1,0 +1,10 @@
+{{/*-----------------------------------------------------------------------------------------------
+----Print a Cistercian glyph with optional annotation
+----*/}}
+{{- $number := . -}}
+<ruby class="hugo-theme-cistercian-annotated">
+    {{ partial "cistercian.html" $number }}
+    <rp>(</rp>
+    <rt>{{ $number }}</rt>
+    <rp>)</rp>
+</ruby>
