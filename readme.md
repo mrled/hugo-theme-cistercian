@@ -47,20 +47,26 @@ You can do this site-wide if you like, or just for the `<head>` of any page whic
 
 Now you can use the partials defined in the theme in your page content.
 
-```go-html-template
 You can show annotated numerals:
 
+```go-html-template
 {{< cistercianAnnotated "420" >}}
+```
 
 Or unannotated ones:
 
+```go-html-template
 {{< cistercian "420" >}}
+```
 
 And there is special support for supporting (annotated) YYYY MMDD HHMM datetimestamps:
 
+```go-html-template
 {{< cistercianPostDate "2021-10-29T11:39:00" >}}
+```
 
 You can control annotations with an included checkbox:
 
+```go-html-template
 {{< cistercianToggleAnnotationsControl >}}
 ```
