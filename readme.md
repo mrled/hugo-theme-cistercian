@@ -2,7 +2,7 @@
 
 A small utility theme for displaying Cistercian numerals in Hugo.
 
-Here's a screenshot of the rendered example (blue background is optional):
+Here's a screenshot of how it is used in your site content:
 
 ![screenshot](rendered-example.png)
 
@@ -10,9 +10,14 @@ See live examples at <https://me.micahrl.com/blog/hugo-theme-cistercian>.
 
 ## How to use it
 
-First, clone the theme into `themes/cistercian` in your site repo.
+### 1. Clone the theme into `themes/cistercian` in your site repo.
 
-Second, this theme to your theme list.
+```sh
+git submodule add https://github.com/mrled/hugo-themes-cistercian themes/cistercian
+```
+
+### 2. Add the theme to your theme list.
+
 If your site config is YAML:
 
 ```yaml
@@ -27,7 +32,9 @@ Or if it's TOML:
 theme = ["cistercian", "your-theme-here"]
 ```
 
-Third, add the theme's head partial to the `<head>` element of any page which should display Cistercian numerals. (Typically you'll need to do this in your site's theme somehow.)
+### 3. Add the theme's head partial to the `<head>` element
+
+You can do this site-wide if you like, or just for the `<head>` of any page which will display Cistercian numerals. (Typically you'll need to do this in your site's theme somehow.)
 
 ```go-html-template
 <head>
@@ -35,6 +42,8 @@ Third, add the theme's head partial to the `<head>` element of any page which sh
   {{ partial "cistercian.head.html" . }}
 </head>
 ```
+
+### 4. Use the theme's partials in your page content
 
 Now you can use the partials defined in the theme in your page content.
 
