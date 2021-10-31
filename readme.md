@@ -56,7 +56,7 @@ You can show annotated numerals:
 Or unannotated ones:
 
 ```go-html-template
-{{< cistercian "420" >}}
+{{< cistercianUnannotated "420" >}}
 ```
 
 And there is special support for supporting (annotated) YYYY MMDD HHMM datetimestamps:
@@ -70,6 +70,8 @@ You can control annotations with an included checkbox:
 ```go-html-template
 {{< cistercianToggleAnnotationsControl >}}
 ```
+
+Note that you should not add styles to the `hugo-theme-cistercian-font-frbcistercian` class, which is the class for the `<span>` element containing the actual Cistercian Unicode codepoints found in the `cistercian.html` partial. If you apply the `font-size` style to that class and use annotations, Firefox will display the annotations overlaid over the center of the Cistercian character. (Chrome does not exhibit this behavior.) You should avoid using the `cistercian.html` partial directly, instead use `cistercianAnnotated.html` and `cistercianUnannotated.html` partials, and style the `hugo-theme-cistercian-container` class which contains the Cistercian numeral's parent element and, if annotated, child `<rt>` and `<rp>` elements. These elements are styled in the `cistercian.head.html` partial and you could modify or override this for your own site.
 
 ### 5. Use the theme's partials in your own layout
 

@@ -3,19 +3,19 @@
 ----the year, month+day, and hour+minute.
 ----*/}}
 {{- $date := . }}
-<ruby class="hugo-theme-cistercian-annotated">
+<ruby class="hugo-theme-cistercian-annotated hugo-theme-cistercian-container">
     {{ partial "cistercian.html" ($date.Format "2006") }}
     <rp>(</rp>
     <rt>{{ $date.Format "2006" }}</rt>
     <rp>)</rp>
 </ruby>
-<ruby class="hugo-theme-cistercian-annotated">
+<ruby class="hugo-theme-cistercian-annotated hugo-theme-cistercian-container">
     {{ partial "cistercian.html" ($date.Format "0102") }}
     <rp>(</rp>
     <rt>{{ $date.Format "01-02" }}</rt>
     <rp>)</rp>
 </ruby>
-<ruby class="hugo-theme-cistercian-annotated">
+<ruby class="hugo-theme-cistercian-annotated hugo-theme-cistercian-container">
     {{ partial "cistercian.html" ($date.Format "1504") }}
     <rp>(</rp>
     <rt>{{ $date.Format "15:04" }}</rt>

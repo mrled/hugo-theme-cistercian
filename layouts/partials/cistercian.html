@@ -1,6 +1,10 @@
 {{/*-----------------------------------------------------------------------------------------------
 ----Given a 1-4 digit decimal number, return Unicode codepoints suitable for FRBCistercian font.
 ----FRBCistercian uses the private use space, so we must construct these codepoints ourselves.
+----Note that you should AVOID styling the hugo-theme-cistercian-font-frbcistercian class with font-size.
+----If you do, it will break Firefox's rendering of annotations (though not Chrome's).
+----Instead, you should use the cistercianAnnotated or cistercianUnannotated partials,
+----and apply font-size to the parent element via the cistercian-theme-container class.
 ----*/}}
 {{- $numberStr := . -}}
 {{/*-----------------------------------------------------------------------------------------------
@@ -52,5 +56,10 @@
 {{-   if gt $ones 0 -}}
 {{-     $cistScratch.Add "cistBytes" (printf "&#x%x;" (add $ones 0x100002)) -}}
 {{-   end -}}
-<span class="hugo-theme-cistercian-font-frbcistercian" converted-number="{{ $numberStr }} - {{ $thousands }}.{{ $hundreds }}.{{ $tens }}.{{ $ones }}">{{ $cistScratch.Get "cistBytes" | safeHTML }}</span>
+<span
+  class="hugo-theme-cistercian-font-frbcistercian"
+  converted-number="{{ $numberStr }} - {{ $thousands }}.{{ $hundreds }}.{{ $tens }}.{{ $ones }}"
+>
+  {{ $cistScratch.Get "cistBytes" | safeHTML }}
+</span>
 {{- end -}}
