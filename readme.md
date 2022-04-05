@@ -1,5 +1,9 @@
 # hugo-theme-cistercian
 
+> Can I just say that I love that you made an open-source plugin, and publicized it, for probably one of the most niche applications I have ever seen in my life.
+
+- pelican_chorus on Reddit
+
 A small utility theme for displaying Cistercian numerals in Hugo.
 
 Here's a screenshot of how it is used in your site content:
