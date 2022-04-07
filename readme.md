@@ -10,7 +10,7 @@ Here's a screenshot of how it is used in your site content:
 
 [![screenshot](/images/tn.png)](/images/screenshot.png)
 
-See live examples at <https://me.micahrl.com/blog/hugo-theme-cistercian>.
+See live examples at <https://me.micahrl.com/projects/hugo-theme-cistercian>.
 
 ## How to use it
 
