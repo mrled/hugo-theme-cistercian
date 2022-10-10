@@ -63,7 +63,11 @@ Or unannotated ones:
 And there is special support for supporting (annotated) YYYY MMDD HHMM datetimestamps:
 
 ```go-html-template
-{{< cistercianDate "2021-10-29T11:39:00" >}}
+{{< cistercianDateTime "2021-10-29T11:39:00" >}}
+```
+
+```go-html-template
+{{< cistercianDateOnly "2021-10-29" >}}
 ```
 
 You can control annotations with an included checkbox:
