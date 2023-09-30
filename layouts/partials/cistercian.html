@@ -8,11 +8,12 @@
 ----*/}}
 {{- $numberStr := . -}}
 {{/*-----------------------------------------------------------------------------------------------
-----Note that the 'int' filter will interpret a number starting with 0 as an octal number.
-----It is safe to check whether the resulting int is 0,
-----but not safe to use a converted decimal number for anything else until we trim leading zeroes.
+----Special case zero.
+----Note that the 'int' filter will interpret a number starting with 0 as an octal number,
+----so to detect zero the easiest thing to do is trim leading zeroes and check for an empty string.
 ----*/}}
-{{- if eq ($numberStr | int) 0 -}}
+{{- $numberStrTrimmed := strings.TrimLeft "0" $numberStr -}}
+{{- if eq (len $numberStrTrimmed) 0 -}}
 <span class="hugo-theme-cistercian-font-frbcistercian" converted-number="{{ $numberStr }} (zero)">&#x100002;</span>
 {{- else -}}
 {{-   $ones := "0" -}}
