@@ -1,0 +1,12 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Cistercian Example Site'
+
+disableKinds = ["taxonomy"]
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[module]
+[[module.imports]]
+path = "hugo-theme-cistercian"

@@ -1,1 +1,5 @@
-{{ partial "cistercianDate.html" ( time (.Get 0) ) }}
+{{- $date := time (.Get "date") }}
+{{- $showdate := .Get "showdate" | default true }}
+{{- $showtime := .Get "showtime" | default true }}
+{{- $annotatable := .Get "annotatable" | default false }}
+{{ partial "cistercianDate.html" (dict "date" $date "showdate" $showdate "showtime" $showtime "annotatable" $annotatable) }}

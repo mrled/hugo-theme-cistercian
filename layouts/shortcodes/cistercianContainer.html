@@ -1,0 +1,3 @@
+{{- $num := .Get "num" }}
+{{- $annotatable := .Get "annotatable" | default false }}
+{{ partial "cistercianContainer.html" (dict "num" $num "annotatable" $annotatable) }}

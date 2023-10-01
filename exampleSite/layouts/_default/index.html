@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>{{ .Title | default .Site.Title }}</title>
+    {{ partial "cistercian.head.html" . }}
+    <style>
+      div.highlight pre {
+        padding: 1em 0.5em 1em 0.5em;
+      }
+      table#cistercian-theme-tests {
+        border-collapse: collapse;
+        border: 1px solid black;
+      }
+      table#cistercian-theme-tests thead tr {
+        background-color: lightblue;
+      }
+      table#cistercian-theme-tests tbody tr:nth-child(even) {
+        background-color:lightgray;
+      }
+      table#cistercian-theme-tests td {
+        padding: 0 1em;
+      }
+      table#cistercian-theme-tests .hugo-theme-cistercian-container {
+        font-size: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    {{ .Content }}
+  </body>
+</html>

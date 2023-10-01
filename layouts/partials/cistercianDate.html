@@ -1,1 +1,22 @@
-{{ partial "cistercianDateTime" . }}
+{{/*-----------------------------------------------------------------------------------------------
+----Given a date and time, return a set of three Cistercian glyphs which represent
+----the year, month+day, and hour+minute.
+----
+----Usage:
+----{{ partial "cistercianDateTime.html" (dict "date" .Date) }}
+----{{ partial "cistercianDateTime.html" (dict "date" .Date "showdate" true "showtime" true "annotatable" true) }}
+----
+----Arguments:
+----date:         The date to be represented as Cistercian glyphs.
+----showdate:     Optional. If true, show the year and month+day glyphs.
+----showtime:     Optional. If true, show the hour+minute glyph.
+----annotatable:  Optional. If true, show the date and time as annotations to the glyphs.
+----*/}}
+{{- $annotatable := .annotatable | default false }}
+{{- if .showdate | default true }}
+{{ partial "cistercianContainer.html" (dict "num" (.date.Format "2006") "annotatable" $annotatable) }}
+{{ partial "cistercianContainer.html" (dict "num" (.date.Format "0102") "annotatable" $annotatable) }}
+{{- end }}
+{{- if .showtime | default true }}
+{{ partial "cistercianContainer.html" (dict "num" (.date.Format "1504") "annotatable" $annotatable) }}
+{{- end }}

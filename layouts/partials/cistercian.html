@@ -1,12 +1,15 @@
 {{/*-----------------------------------------------------------------------------------------------
-----Given a 1-4 digit decimal number, return Unicode codepoints suitable for FRBCistercian font.
+----Given a 1-4 digit decimal number,
+----return a <span> containing Unicode codepoints suitable for FRBCistercian font.
+----
 ----FRBCistercian uses the private use space, so we must construct these codepoints ourselves.
+----
 ----Note that you should AVOID styling the hugo-theme-cistercian-font-frbcistercian class with font-size.
 ----If you do, it will break Firefox's rendering of annotations (though not Chrome's).
-----Instead, you should use the cistercianAnnotated or cistercianUnannotated partials,
+----Instead, you should use the cistercianWrapper partial,
 ----and apply font-size to the parent element via the cistercian-theme-container class.
 ----*/}}
-{{- $numberStr := . -}}
+{{- $numberStr := printf "%v" . -}} {{/* Accept either a number or a string. */}}
 {{/*-----------------------------------------------------------------------------------------------
 ----Special case zero.
 ----Note that the 'int' filter will interpret a number starting with 0 as an octal number,

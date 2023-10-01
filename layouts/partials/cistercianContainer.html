@@ -1,0 +1,33 @@
+{{/*-----------------------------------------------------------------------------------------------
+----Print a Cistercian glyph with optional annotation
+----
+----Usage:
+----{{ partial "cistercian.html" (dict "num" 1234 "annotatable" true) }}
+----
+----Arguments:
+----num:          The number to be represented as a Cistercian glyph.
+----annotatable:  Optional. If true, the glyph is annotatable. (A <ruby> element is created.)
+----
+----The result will be either a <ruby> (if annotatable) or a <span> (if not annotatable) element
+----with the class "hugo-theme-cistercian-container".
+----
+----To change the size of the Cistercian font,
+----you should change the font-size of the "hugo-theme-cistercian-container" class --
+----not the font-size of the "hugo-theme-cistercian-font-frbcistercian" class,
+----which is the class of the <span> elements which make up the Cistercian glyphs,
+----because doing the latter will break Firefox's rendering of annotations.
+----
+</ruby>
+----*/}}
+{{- if .annotatable | default false }}
+<ruby class="hugo-theme-cistercian-container hugo-theme-cistercian-annotatable">
+  {{ partial "cistercian.html" .num }}
+  <rp>(</rp>
+  <rt>{{ .num }}</rt>
+  <rp>)</rp>
+</ruby>
+{{- else }}
+<span class="hugo-theme-cistercian-container">
+  {{ partial "cistercian.html" .num }}
+</span>
+{{- end }}
