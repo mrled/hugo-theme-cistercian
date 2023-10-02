@@ -12,10 +12,20 @@
     <style>
       div.highlight pre {
         padding: 1em 0.5em 1em 0.5em;
+        overflow-x: scroll;
       }
       table#cistercian-theme-tests {
         border-collapse: collapse;
         border: 1px solid black;
+        table-layout: fixed;
+        width: 100%;
+      }
+      table#cistercian-theme-tests td {
+        word-wrap: break-word;
+        vertical-align: top;
+      }
+      table#cistercian-theme-tests td:first-child {
+        white-space: nowrap;
       }
       table#cistercian-theme-tests thead tr {
         background-color: lightblue;
