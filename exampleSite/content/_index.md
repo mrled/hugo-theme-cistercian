@@ -70,7 +70,7 @@ To make sure that everything renders properly, this page includes some test case
 <table id="cistercian-theme-tests">
   <thead>
     <tr>
-      <th>Render</th>
+      <th>Cistercian</th>
       <th>Description</th>
     </tr>
   </thead>
