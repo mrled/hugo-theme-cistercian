@@ -6,11 +6,19 @@
 
 A small utility theme for displaying Cistercian numerals in Hugo.
 
-Here's a screenshot of how it is used in your site content:
+See the `exampleSite` deployed at <https://pages.micahrl.com/hugo-theme-cistercian>.
+Here is a screenshot:
 
 [![screenshot](/images/tn.png)](/images/screenshot.png)
 
-See the `exampleSite` deployed at <https://pages.micahrl.com/hugo-theme-cistercian>.
+## About Cistercian numerals
+
+[Cistercian numerals](https://en.wikipedia.org/wiki/Cistercian_numerals) are an archaic way of writing numbers originating in the thirteenth century.
+
+I've also written a React component for converting from decimal numbers, which can be used interactively at <https://cistercian.micahrl.com>.
+
+Cistercian numerals are not found in Unicode, and the [FRBCistercian font](https://github.com/ctrlcctrlv/FRBCistercian) that displays them places the glyphs in a [private use area](https://en.wikipedia.org/wiki/Private_Use_Areas). This means that the characters can be copied to the clipboard, but pasting them elsewhere will not make sense in any context unless FRBCistercian is used to display them.
+To use FRBCistercian, we must calculate an offset from the font's base digit for the ones, tens, hundreds, and thousands place. We do this in the [`cistercian.html` partial](layouts/partials/cistercian.html).
 
 ## How to use it
 
