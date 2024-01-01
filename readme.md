@@ -72,6 +72,28 @@ You can control annotations with an included checkbox:
 {{< cistercianToggleAnnotationsControl >}}
 ```
 
+You can also convert a 1-4 digit decimal number to a dict containing Cistercian bytes:
+
+```go-html-template
+{{ $cisterciaBirthYYYY := partial "cistercianRaw.html" 1985 }}
+
+{{/*-----------------------------------------------------------------------------------------------
+----Given a 1-4 digit decimal number,
+----return a dict with the following properties:
+----  input:            the original input, unmodified (either an int or a string)
+----  cistercianBytes:  a string containing Unicode codepoints suitable for FRBCistercian font
+----  decimal:          the original decimal number, as an integer (even if passed a string), with leading zeroes trimmed
+----  thousands:        the thousands place in decimal
+----  hundreds:         the hundreds place in decimal
+----  tens:             the tens place in decimal
+----  ones:             the ones place in decimal
+----*/}}
+
+{{ $birthCistercianBytes := index $cisterciaBirthYYYY "cistercianBytes" }}
+{{ $birthDecimal := index $cisterciaBirthYYYY "decimal" }}
+{{/* ...etc */}}
+```
+
 ### 4. Use the theme's partials in your own layout
 
 There is a corresponding partial for each shortcode listed above, which can be used in your site's layout (e.g. under `layouts/index.html` in your site's repo). This is useful if you want to include Cistercian in your site's templates.

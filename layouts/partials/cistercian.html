@@ -2,68 +2,20 @@
 ----Given a 1-4 digit decimal number,
 ----return a <span> containing Unicode codepoints suitable for FRBCistercian font.
 ----
-----FRBCistercian uses the private use space, so we must construct these codepoints ourselves.
-----
 ----Note that you should AVOID styling the hugo-theme-cistercian-font-frbcistercian class with font-size.
 ----If you do, it will break Firefox's rendering of annotations (though not Chrome's).
 ----Instead, you should use the cistercianWrapper partial,
 ----and apply font-size to the parent element via the cistercian-theme-container class.
 ----*/}}
-{{- $numberStr := printf "%v" . -}} {{/* Accept either a number or a string. */}}
-{{/*-----------------------------------------------------------------------------------------------
-----Special case zero.
-----Note that the 'int' filter will interpret a number starting with 0 as an octal number,
-----so to detect zero the easiest thing to do is trim leading zeroes and check for an empty string.
-----*/}}
-{{- $numberStrTrimmed := strings.TrimLeft "0" $numberStr -}}
-{{- if eq (len $numberStrTrimmed) 0 -}}
-<span class="hugo-theme-cistercian-font-frbcistercian" converted-number="{{ $numberStr }} (zero)">&#x100002;</span>
-{{- else -}}
-{{-   $ones := "0" -}}
-{{-   $tens := "0" -}}
-{{-   $hundreds := "0" -}}
-{{-   $thousands := "0" -}}
-{{-   if eq (len $numberStr) 4 -}}
-{{-     $thousands = substr $numberStr 0 1 -}}
-{{-     $hundreds = substr $numberStr 1 1 -}}
-{{-     $tens = substr $numberStr 2 1 -}}
-{{-     $ones = substr $numberStr 3 1 -}}
-{{-   else if eq (len $numberStr) 3 -}}
-{{-     $hundreds = substr $numberStr 0 1 -}}
-{{-     $tens = substr $numberStr 1 1 -}}
-{{-     $ones = substr $numberStr 2 1 -}}
-{{-   else if eq (len $numberStr) 2 -}}
-{{-     $tens = substr $numberStr 0 1 -}}
-{{-     $ones = substr $numberStr 1 1 -}}
-{{-   else if eq (len $numberStr) 1 -}}
-{{-     $ones = substr $numberStr 0 1 -}}
-{{-   else -}}
-{{-     errorf "String %s is not a valid 4-digit string" $numberStr -}}
-{{-   end -}}
-
-{{-   $thousands := $thousands | int -}}
-{{-   $hundreds := $hundreds | int -}}
-{{-   $tens := $tens | int -}}
-{{-   $ones := $ones | int -}}
-
-{{-   $cistScratch := newScratch -}}
-{{-   $cistScratch.Add "cistBytes" "&#x100002;" -}}
-{{-   if gt $thousands 0 -}}
-{{-     $cistScratch.Add "cistBytes" (printf "&#x%x;" (add $thousands 0x10001d)) -}}
-{{-   end -}}
-{{-   if gt $hundreds 0 -}}
-{{-     $cistScratch.Add "cistBytes" (printf "&#x%x;" (add $hundreds 0x100014)) -}}
-{{-   end -}}
-{{-   if gt $tens 0 -}}
-{{-     $cistScratch.Add "cistBytes" (printf "&#x%x;" (add $tens 0x10000b)) -}}
-{{-   end -}}
-{{-   if gt $ones 0 -}}
-{{-     $cistScratch.Add "cistBytes" (printf "&#x%x;" (add $ones 0x100002)) -}}
-{{-   end -}}
+{{- $cistercian := partial "cistercianRaw.html" . -}}
 <span
   class="hugo-theme-cistercian-font-frbcistercian"
-  converted-number="{{ $numberStr }} - {{ $thousands }}.{{ $hundreds }}.{{ $tens }}.{{ $ones }}"
+  data-cistercian-input='{{ index $cistercian "input" }}'
+  data-cistercian-decimal='{{ index $cistercian "decimal" }}'
+  data-cistercian-thousands='{{ index $cistercian "thousands" }}'
+  data-cistercian-hundreds='{{ index $cistercian "hundreds" }}'
+  data-cistercian-tens='{{ index $cistercian "tens" }}'
+  data-cistercian-ones='{{ index $cistercian "ones" }}'
 >
-  {{ $cistScratch.Get "cistBytes" | safeHTML }}
+  {{ index $cistercian "cistercianBytes" | safeHTML }}
 </span>
-{{- end -}}
