@@ -2,7 +2,7 @@
 ----Print a Cistercian glyph with optional annotation
 ----
 ----Usage:
-----{{ partial "cistercian.html" (dict "num" 1234 "annotatable" true) }}
+----{{ partial "cistercian.html" (dict "num" 1234 "annotatable" true "site" .Site) }}
 ----
 ----Arguments:
 ----num:          The number to be represented as a Cistercian glyph.
@@ -21,13 +21,13 @@
 ----*/}}
 {{- if .annotatable | default false }}
 <ruby class="hugo-theme-cistercian-container hugo-theme-cistercian-annotatable">
-  {{ partial "cistercian.html" .num }}
+  {{ partial "cistercian.html" (dict "num" .num "site" .site) }}
   <rp>(</rp>
   <rt>{{ .num }}</rt>
   <rp>)</rp>
 </ruby>
 {{- else }}
 <span class="hugo-theme-cistercian-container">
-  {{ partial "cistercian.html" .num }}
+  {{ partial "cistercian.html" (dict "num" .num "site" .site) }}
 </span>
 {{- end }}

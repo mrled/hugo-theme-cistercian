@@ -1,24 +1,29 @@
 {{/*-----------------------------------------------------------------------------------------------
 ----Given a 1-4 digit decimal number,
-----return a dict with the following properties:
+----expect a dict like (dict "num" 69 "site" .Site),
+----and return a dict with the following properties:
 ----  input:            the original input, unmodified (either an int or a string)
-----  cistercianBytes:  a string containing Unicode codepoints suitable for FRBCistercian font
-----  decimal:          the original decimal number, as an integer (even if passed a string), with leading zeroes trimmed
+----  htmlChars:        a string containing HTML-escaped Unicode codepoints suitable for FRBCistercian font
+----                    e.g. "&#x100002;&#x100011;&#x10000b;" for 69
+----  unicodeChars:     a string containing actual Unicode codepoints suitable for FRBCistercian font
+----                    (the values in the data/cistercian.json file, which will not render in an editor without the font)
 ----  thousands:        the thousands place in decimal
 ----  hundreds:         the hundreds place in decimal
 ----  tens:             the tens place in decimal
 ----  ones:             the ones place in decimal
 ----*/}}
+{{- $number := .num }}
+{{- $cistercian := .site.Data.cistercian -}}
 {{- $result := dict
-  "input" .
-  "cistercianBytes" "&#x100002;"
-  "decimal" 0
+  "input" $number
+  "htmlChars" "&#x100002;"
+  "unicodeChars" (index $cistercian "0")
   "thousands" 0
   "hundreds" 0
   "tens" 0
   "ones" 0
 -}}
-{{- $numberStr := printf "%v" . -}} {{/* Accept either a number or a string. */}}
+{{- $numberStr := printf "%v" $number -}} {{/* Accept either a number or a string. */}}
 {{/*-----------------------------------------------------------------------------------------------
 ----Special case zero.
 ----Note that the 'int' filter will interpret a number starting with 0 as an octal number,
@@ -51,30 +56,44 @@
 {{-   else -}}
 {{-     errorf "String %s is not a valid 4-digit string" $numberStr -}}
 {{-   end -}}
+{{/*  Get indexes for the $cistercian data object.
+      Each index is the number right-padded with zeroes,
+      eg the index for 1 in the ones place is "1", the index for 1 in the tens place is "10", etc.
+*/}}
+{{-   $thousandsIdx := printf "%s000" $thousands -}}
+{{-   $hundredsIdx := printf "%s00" $hundreds -}}
+{{-   $tensIdx := printf "%s0" $tens -}}
+{{-   $onesIdx := $ones -}}
 {{/* Now that we have individal digits, convert them to integers */}}
 {{-   $thousands := $thousands | int -}}
 {{-   $hundreds := $hundreds | int -}}
 {{-   $tens := $tens | int -}}
 {{-   $ones := $ones | int -}}
 {{/* Compute the Unicode codepoints for the Cistercian digits */}}
+{{-   $cistStr := index $cistercian "0" -}}
 {{-   $cistScratch := newScratch -}}
 {{-   $cistScratch.Add "cistBytes" "&#x100002;" -}}
 {{-   if gt $thousands 0 -}}
+{{-     $cistStr = printf "%s%s" $cistStr (index $cistercian $thousandsIdx) -}}
 {{-     $cistScratch.Add "cistBytes" (printf "&#x%x;" (add $thousands 0x10001d)) -}}
 {{-   end -}}
 {{-   if gt $hundreds 0 -}}
+{{-     $cistStr = printf "%s%s" $cistStr (index $cistercian $hundredsIdx) -}}
 {{-     $cistScratch.Add "cistBytes" (printf "&#x%x;" (add $hundreds 0x100014)) -}}
 {{-   end -}}
 {{-   if gt $tens 0 -}}
+{{-     $cistStr = printf "%s%s" $cistStr (index $cistercian $tensIdx) -}}
 {{-     $cistScratch.Add "cistBytes" (printf "&#x%x;" (add $tens 0x10000b)) -}}
 {{-   end -}}
 {{-   if gt $ones 0 -}}
+{{-     $cistStr = printf "%s%s" $cistStr (index $cistercian $onesIdx) -}}
 {{-     $cistScratch.Add "cistBytes" (printf "&#x%x;" (add $ones 0x100002)) -}}
 {{-   end -}}
 {{/* Set the return value */}}
 {{- $result = merge $result (
   dict
-    "cistercianBytes" ($cistScratch.Get "cistBytes")
+    "unicodeChars" $cistStr
+    "htmlChars" ($cistScratch.Get "cistBytes")
     "thousands" $thousands
     "hundreds" $hundreds
     "tens" $tens
