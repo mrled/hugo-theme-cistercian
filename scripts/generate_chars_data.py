@@ -48,8 +48,8 @@ cistercian_characters_dict = {
 
 
 def main():
-    scriptroot = os.path.dirname(os.path.realpath(__file__))
-    dataroot = os.path.join(scriptroot, "data")
+    reporoot = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    dataroot = os.path.join(reporoot, "data")
     datacistercian = os.path.join(dataroot, "cistercian")
     data_file = os.path.join(datacistercian, "cistercian.json")
 
