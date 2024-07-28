@@ -132,5 +132,13 @@ You can use the `cistercian/cistercianRaw.html` partial for fine grained control
 
 As Go modules, Hugo themes are versioned with Git tags.
 
-When making a new release, make sure that `exampleSite/go.mod`
-points to the new version of the tag.
+To make a new release:
+
+* Test that the version works in the exampleSite
+  * The `exampleSite/go.mod` file is configured to use the repository root for the theme,
+    so you can test before committing / tagging
+* Commit and push the changes
+* Update `exampleSite/go.mod` to require the new version --
+  this is not technically required, but is good practice
+* `git tag v4.2.0`
+* `git push origin v4.2.0`
