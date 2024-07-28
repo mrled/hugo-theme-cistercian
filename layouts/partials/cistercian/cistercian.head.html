@@ -1,45 +1,4 @@
-<style type="text/css">
-  @font-face {
-    font-family: 'FRBCistercian';
-    font-style: normal;
-    font-weight: 400;
-    src: local('FRBCistercian'), url('{{ "cistercian/FRBCistercian.woff2" | relURL }}') format('woff2');
-  }
-  .hugo-theme-cistercian-font-frbcistercian {
-    font-family: "FRBCistercian";
-  }
-  .hugo-theme-cistercian-container {
-    font-size: 4em;
-  }
-  .hugo-theme-cistercian-container rt, .hugo-theme-cistercian-container rp {
-    font-size: 0.20em;
-  }
-
-  .hugo-theme-cistercian-label-hidden {
-    display: none;
-  }
-
-  #hugo-theme-cistercian-toggle-annotations-button {
-    padding: 0 0.25em;
-    border: 1px;
-  }
-</style>
-
-<script type="text/javascript">
-  function HugoThemeCistercian_ToggleAnnotations() {
-    const numerals = document.getElementsByClassName("hugo-theme-cistercian-annotatable");
-    Array.prototype.forEach.call(numerals, function(numeral) {
-      const rts = numeral.getElementsByTagName("rt");
-      const rps = numeral.getElementsByTagName("rp");
-      // This is a little weird because getElementsByTagName() does not return an array
-      // <https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection>
-      [rts, rps].forEach(function(collection) {
-        Array.prototype.forEach.call(collection, function(childElem) {
-          childElem.classList.toggle("hugo-theme-cistercian-label-hidden");
-        })
-      })
-    })
-  }
-
-  window.HugoThemeCistercian_ToggleAnnotations = HugoThemeCistercian_ToggleAnnotations;
-</script>
+{{ $cistercianCss := resources.Get "cistercian/cistercian.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $cistercianCss.Permalink }}" integrity="{{ $cistercianCss.Data.Integrity }}">
+{{ $cistercianJs := resources.Get "cistercian/cistercian.js" | minify | fingerprint }}
+<script src="{{ $cistercianJs.Permalink }}" integrity="{{ $cistercianJs.Data.Integrity }}"></script>

@@ -1,14 +1,13 @@
-/* Generate a list of fonts fron input.
- *
- * Must be executed as a template with each font's relative URL passed in.
- * If the font is an asset, it must be processed by the asset pipeline FIRST.
+/* hugo-theme-cistercian CSS
  */
+
 @font-face {
   font-family: 'FRBCistercian';
   font-style: normal;
   font-weight: 400;
   src: url('/cistercian/FRBCistercian.woff2') format('woff2');
 }
+
 .hugo-theme-cistercian-font-frbcistercian {
   font-family: "FRBCistercian";
 }

@@ -1,3 +1,8 @@
+/* hugo-theme-cistercian JavaScript
+ */
+
+/* Toggle Cistercian annotations
+ */
 function HugoThemeCistercian_ToggleAnnotations() {
   const numerals = document.getElementsByClassName("hugo-theme-cistercian-annotatable");
   Array.prototype.forEach.call(numerals, function(numeral) {
