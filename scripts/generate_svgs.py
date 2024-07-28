@@ -11,7 +11,7 @@ import string
 # The number is a simple decimal number that the Cistercian glyphs represent.
 # The classes are the CSS classes that the SVG uses to draw the glyphs.
 # E.g. for the number 1234, the classes would be z1000 z200 z30 z4.
-cistercian_svg = """\
+cistercian_svg = r"""\
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.5 58.8" role="img" focusable="false" aria-labelledby="CistercianNumber" aria-describedby="CistercianDesc" id="CistercianGlyph" class="$classes">
   <title id="CistercianNumber">$number</title>
   <desc id="CistercianDesc">A number as represented in Cistercian glyph</desc>
