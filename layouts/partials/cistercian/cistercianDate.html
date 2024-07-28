@@ -14,9 +14,9 @@
 ----*/}}
 {{- $annotatable := .annotatable | default false }}
 {{- if .showdate | default true }}
-{{ partial "cistercianContainer.html" (dict "num" (.date.Format "2006") "annotatable" $annotatable "site" .site) }}
-{{ partial "cistercianContainer.html" (dict "num" (.date.Format "0102") "annotatable" $annotatable "site" .site) }}
+{{ partial "cistercian/cistercianContainer.html" (dict "num" (.date.Format "2006") "annotatable" $annotatable "site" .site) }}
+{{ partial "cistercian/cistercianContainer.html" (dict "num" (.date.Format "0102") "annotatable" $annotatable "site" .site) }}
 {{- end }}
 {{- if .showtime | default true }}
-{{ partial "cistercianContainer.html" (dict "num" (.date.Format "1504") "annotatable" $annotatable "site" .site) }}
+{{ partial "cistercian/cistercianContainer.html" (dict "num" (.date.Format "1504") "annotatable" $annotatable "site" .site) }}
 {{- end }}

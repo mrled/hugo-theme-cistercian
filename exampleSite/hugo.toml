@@ -9,4 +9,4 @@ unsafe = true
 
 [module]
 [[module.imports]]
-path = "hugo-theme-cistercian"
+path = "github.com/mrled/hugo-theme-cistercian"

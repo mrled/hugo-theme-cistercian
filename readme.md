@@ -18,7 +18,7 @@ Here is a screenshot:
 I've also written a React component for converting from decimal numbers, which can be used interactively at <https://cistercian.micahrl.com>.
 
 Cistercian numerals are not found in Unicode, and the [FRBCistercian font](https://github.com/ctrlcctrlv/FRBCistercian) that displays them places the glyphs in a [private use area](https://en.wikipedia.org/wiki/Private_Use_Areas). This means that the characters can be copied to the clipboard, but pasting them elsewhere will not make sense in any context unless FRBCistercian is used to display them.
-To use FRBCistercian, we must calculate an offset from the font's base digit for the ones, tens, hundreds, and thousands place. We do this in the [`cistercianRaw.html` partial](layouts/partials/cistercianRaw.html). That partial calculates both HTML escape sequences for the Unicode characters, as well as the raw Unicode characters themselves.
+To use FRBCistercian, we must calculate an offset from the font's base digit for the ones, tens, hundreds, and thousands place. We do this in the [`cistercian/cistercianRaw.html` partial](layouts/partials/cistercian/cistercianRaw.html). That partial calculates both HTML escape sequences for the Unicode characters, as well as the raw Unicode characters themselves.
 
 ## How to use it
 
@@ -44,7 +44,7 @@ This gets the font files, some very light CSS that is only used for displaying t
 ```go-html-template
 <head>
 ...
-  {{ partial "cistercian.head.html" . }}
+  {{ partial "cistercian/cistercian.head.html" . }}
 </head>
 ```
 
@@ -63,20 +63,32 @@ and `showdate` and `showtime` are both `true` by default
 and control showing the YYYY MMDD and HHMM components of the datestamp respectively.
 
 ```go-html-template
-{{< cistercianDate date="2021-10-29T11:39:00" annotatable=true showdate=true showtime=true >}}
+{{< cistercian/cistercianDate date="2021-10-29T11:39:00" annotatable=true showdate=true showtime=true >}}
 ```
 
 You can control annotations with an included checkbox:
 
 ```go-html-template
-{{< cistercianToggleAnnotationsControl >}}
+{{< cistercian/cistercianToggleAnnotationsControl >}}
+```
+
+### 4. Use the theme's partials in your own layout
+
+There is a corresponding partial for each shortcode listed above, which can be used in your site's layout (e.g. under `layouts/index.html` in your site's repo). This is useful if you want to include Cistercian in your site's templates.
+
+They work mostly the same as the shortcodes above,
+using `dict`s to pass arguments. For instance:
+
+```go-html-template
+{{ partial "cistercian/cistercianContainer.html" (dict "num" $num "annotatable" $annotatable "site" .Site) }}
+{{ partial "cistercian/cistercianDate.html" (dict "date" $date "showdate" $showdate "showtime" $showtime "annotatable" $annotatable "site" .Site) }}
 ```
 
 You can also convert a 1-4 digit decimal number to a dict containing HTML representation of Unicode string.
 This is what happens in the other examples too, but you can just have the result directly.
 
 ```go-html-template
-{{ $cisterciaBirthYYYY := partial "cistercianRawHtml.html" (dict "num" 1985 "site" .Site) }}
+{{ $cisterciaBirthYYYY := partial "cistercian/cistercianRawHtml.html" (dict "num" 1985 "site" .Site) }}
 
 {{/*-----------------------------------------------------------------------------------------------
 ----Given a 1-4 digit decimal number,
@@ -97,26 +109,28 @@ This is what happens in the other examples too, but you can just have the result
 {{/* ...etc */}}
 ```
 
-### 4. Use the theme's partials in your own layout
-
-There is a corresponding partial for each shortcode listed above, which can be used in your site's layout (e.g. under `layouts/index.html` in your site's repo). This is useful if you want to include Cistercian in your site's templates.
-
-They work mostly the same as the shortcodes above,
-using `dict`s to pass arguments. For instance:
-
-```go-html-template
-{{ partial "cistercianContainer.html" (dict "num" $num "annotatable" $annotatable "site" .Site) }}
-{{ partial "cistercianDate.html" (dict "date" $date "showdate" $showdate "showtime" $showtime "annotatable" $annotatable "site" .Site) }}
-```
-
 ### 5. Style the elements to your liking
 
 The CSS classes and HTML element IDs are prefixed with `hugo-theme-cistercian-`, so you can add or override the (very light) included styles as you please.
 
 The annotations toggling button requires some JavaScript.
 
-Both are in [cistercian.head.html](layouts/partials/cistercian.head.html). See that file for details.
+Both are in [cistercian.head.html](layouts/partials/cistercian/cistercian.head.html). See that file for details.
 
-Note that you should not add styles to the `hugo-theme-cistercian-font-frbcistercian` class, which is the class for the `<span>` element containing the actual Cistercian Unicode codepoints found in the `cistercian.html` partial. If you apply the `font-size` style to that class and use annotations, Firefox will display the annotations overlaid over the center of the Cistercian character. (Chrome does not exhibit this behavior.)
+Note that you should not add styles to the `hugo-theme-cistercian-font-frbcistercian` class, which is the class for the `<span>` element containing the actual Cistercian Unicode codepoints found in the `cistercian/cistercian.html` partial. If you apply the `font-size` style to that class and use annotations, Firefox will display the annotations overlaid over the center of the Cistercian character. (Chrome does not exhibit this behavior.)
 
-You can use `cistercianRaw.html` for fine grained control over the characters and what they return, but for the normal case inside HTML templates try using `cistercianAnnotated.html` and `cistercianUnannotated.html` if they meet your needs. You can style the `hugo-theme-cistercian-container` class which contains the Cistercian numeral's parent element and, if annotated, child `<rt>` and `<rp>` elements. These elements are styled in the `cistercian.head.html` partial and you could modify or override this for your own site.
+You can use the `cistercian/cistercianRaw.html` partial for fine grained control over the characters and what they return, but for the normal case inside HTML templates try using `cistercian/cistercianAnnotated.html` and `cistercian/cistercianUnannotated.html` if they meet your needs. You can style the `hugo-theme-cistercian-container` class which contains the Cistercian numeral's parent element and, if annotated, child `<rt>` and `<rp>` elements. These elements are styled in the `cistercian/cistercian.head.html` partial and you could modify or override this for your own site.
+
+## Version history
+
+* **1.0.0**: First stable release
+  * All assets, layouts, and static files are in directories called `cistercian/`
+* **pre-1.0**: Get it working
+  * These were never versioned because I'm lazy
+
+## Versioning
+
+As Go modules, Hugo themes are versioned with Git tags.
+
+When making a new release, make sure that `exampleSite/go.mod`
+points to the new version of the tag.

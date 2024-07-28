@@ -8,7 +8,7 @@
 ----Instead, you should use the cistercianWrapper partial,
 ----and apply font-size to the parent element via the cistercian-theme-container class.
 ----*/}}
-{{- $cistercian := partial "cistercianRaw.html" (dict "num" .num "site" .site) -}}
+{{- $cistercian := partial "cistercian/cistercianRaw.html" (dict "num" .num "site" .site) -}}
 <span
   class="hugo-theme-cistercian-font-frbcistercian"
   data-cistercian-input='{{ index $cistercian "input" }}'
