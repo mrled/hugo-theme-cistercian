@@ -80,15 +80,15 @@ They work mostly the same as the shortcodes above,
 using `dict`s to pass arguments. For instance:
 
 ```go-html-template
-{{ partial "cistercian/cistercianContainer.html" (dict "num" $num "annotatable" $annotatable "site" .Site) }}
-{{ partial "cistercian/cistercianDate.html" (dict "date" $date "showdate" $showdate "showtime" $showtime "annotatable" $annotatable "site" .Site) }}
+{{ partial "cistercian/cistercianContainer.html" (dict "num" $num "annotatable" $annotatable) }}
+{{ partial "cistercian/cistercianDate.html" (dict "date" $date "showdate" $showdate "showtime" $showtime "annotatable" $annotatable) }}
 ```
 
 You can also convert a 1-4 digit decimal number to a dict containing HTML representation of Unicode string.
 This is what happens in the other examples too, but you can just have the result directly.
 
 ```go-html-template
-{{ $cisterciaBirthYYYY := partial "cistercian/cistercianRawHtml.html" (dict "num" 1985 "site" .Site) }}
+{{ $cisterciaBirthYYYY := partial "cistercian/cistercianRawHtml.html" (dict "num" 1985) }}
 
 {{/*-----------------------------------------------------------------------------------------------
 ----Given a 1-4 digit decimal number,
@@ -123,8 +123,11 @@ You can use the `cistercian/cistercianRaw.html` partial for fine grained control
 
 ## Version history
 
-* **1.0.0**: First stable release
-  * All assets, layouts, and static files are in directories called `cistercian/`
+* **1.0**:
+  * **1.0.2**: Use context root `$` when required; do not require passing `site` arguments
+  * **1.0.1**: Do not inline assets
+  * **1.0.0**: First stable release
+    * All assets, layouts, and static files are in directories called `cistercian/`
 * **pre-1.0**: Get it working
   * These were never versioned because I'm lazy
 
@@ -140,5 +143,6 @@ To make a new release:
 * Commit and push the changes
 * Update `exampleSite/go.mod` to require the new version --
   this is not technically required, but is good practice
+* Add to version history (previous section in README)
 * `git tag v4.2.0`
 * `git push origin v4.2.0`

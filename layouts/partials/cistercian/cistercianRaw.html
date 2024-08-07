@@ -1,6 +1,6 @@
 {{/*-----------------------------------------------------------------------------------------------
 ----Given a 1-4 digit decimal number,
-----expect a dict like (dict "num" 69 "site" .Site),
+----expect a dict like (dict "num" 69),
 ----and return a dict with the following properties:
 ----  input:            the original input, unmodified (either an int or a string)
 ----  htmlChars:        a string containing HTML-escaped Unicode codepoints suitable for FRBCistercian font
@@ -13,7 +13,7 @@
 ----  ones:             the ones place in decimal
 ----*/}}
 {{- $number := .num }}
-{{- $cistercian := .site.Data.cistercian -}}
+{{- $cistercian := $.Site.Data.cistercian -}}
 {{- $result := dict
   "input" $number
   "htmlChars" "&#x100002;"

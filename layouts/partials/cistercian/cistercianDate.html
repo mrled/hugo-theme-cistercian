@@ -3,8 +3,8 @@
 ----the year, month+day, and hour+minute.
 ----
 ----Usage:
-----{{ partial "cistercianDateTime.html" (dict "date" .Date "site" .Site) }}
-----{{ partial "cistercianDateTime.html" (dict "date" .Date "showdate" true "showtime" true "annotatable" true "site" .Site) }}
+----{{ partial "cistercianDateTime.html" (dict "date" .Date) }}
+----{{ partial "cistercianDateTime.html" (dict "date" .Date "showdate" true "showtime" true "annotatable" true) }}
 ----
 ----Arguments:
 ----date:         The date to be represented as Cistercian glyphs.
@@ -14,9 +14,9 @@
 ----*/}}
 {{- $annotatable := .annotatable | default false }}
 {{- if .showdate | default true }}
-{{ partial "cistercian/cistercianContainer.html" (dict "num" (.date.Format "2006") "annotatable" $annotatable "site" .site) }}
-{{ partial "cistercian/cistercianContainer.html" (dict "num" (.date.Format "0102") "annotatable" $annotatable "site" .site) }}
+{{ partial "cistercian/cistercianContainer.html" (dict "num" (.date.Format "2006") "annotatable" $annotatable) }}
+{{ partial "cistercian/cistercianContainer.html" (dict "num" (.date.Format "0102") "annotatable" $annotatable) }}
 {{- end }}
 {{- if .showtime | default true }}
-{{ partial "cistercian/cistercianContainer.html" (dict "num" (.date.Format "1504") "annotatable" $annotatable "site" .site) }}
+{{ partial "cistercian/cistercianContainer.html" (dict "num" (.date.Format "1504") "annotatable" $annotatable) }}
 {{- end }}

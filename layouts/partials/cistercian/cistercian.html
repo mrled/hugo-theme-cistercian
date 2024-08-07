@@ -1,6 +1,6 @@
 {{/*-----------------------------------------------------------------------------------------------
 ----Given a 1-4 digit decimal number,
-----expect a dict like (dict "num" 69 "site" .Site),
+----expect a dict like (dict "num" 69),
 ----return a <span> containing Unicode codepoints suitable for FRBCistercian font.
 ----
 ----Note that you should AVOID styling the hugo-theme-cistercian-font-frbcistercian class with font-size.
@@ -8,7 +8,7 @@
 ----Instead, you should use the cistercianWrapper partial,
 ----and apply font-size to the parent element via the cistercian-theme-container class.
 ----*/}}
-{{- $cistercian := partial "cistercian/cistercianRaw.html" (dict "num" .num "site" .site) -}}
+{{- $cistercian := partial "cistercian/cistercianRaw.html" (dict "num" .num) -}}
 <span
   class="hugo-theme-cistercian-font-frbcistercian"
   data-cistercian-input='{{ index $cistercian "input" }}'
