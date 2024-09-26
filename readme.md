@@ -1,7 +1,7 @@
 # hugo-theme-cistercian
 
 > [!IMPORTANT]
-> This project is now retired, as it is much easier to use the [Clairvo font](https://github.com/TiroTypeworks/Clairvo) with regular Unicode 0-9 digits than to use FRBCistercian and the Private Use Area. The code still works as of 2024 and Hugo 0.129 but is no longer updated. If you find this code useful anyway I'd love to hear from you, please reach out!
+> This project is now retired, as it is much easier to use the [Clairvo font](https://github.com/TiroTypeworks/Clairvo) with regular Unicode 0-9 digits than to use FRBCistercian and the Private Use Area. The code still works as of 2024 and Hugo 0.129 but is no longer updated. The [example site](https://pages.micahrl.com/hugo-theme-cistercian) should continue working indefinitely. If you find this code useful anyway I'd love to hear from you, please reach out!
 
 > Can I just say that I love that you made an open-source plugin, and publicized it, for probably one of the most niche applications I have ever seen in my life.
 
