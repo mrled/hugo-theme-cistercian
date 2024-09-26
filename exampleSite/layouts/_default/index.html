@@ -10,6 +10,13 @@
     <title>{{ .Title | default .Site.Title }}</title>
     {{ partial "cistercian/cistercian.head.html" . }}
     <style>
+      @font-face {
+        font-family: 'FRBCistercian';
+        font-style: normal;
+        font-weight: 400;
+        /* when deployed to GitHub Pages we have to check the /hugo-theme-cistercian/ path */
+        src: url('/hugo-theme-cistercian/cistercian/FRBCistercian.woff2')  url('/cistercian/FRBCistercian.woff2') format('woff2');
+      }
       div.highlight pre {
         padding: 1em 0.5em 1em 0.5em;
         overflow-x: scroll;
